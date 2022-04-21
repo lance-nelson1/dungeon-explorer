@@ -6,8 +6,8 @@
 
             constructor({ }) {
                 let rootDiv;
-                const height = 10
-                const width = 10
+                const height = 7
+                const width = 5
 
                 //keep
                 const win = () => {
@@ -89,6 +89,7 @@
                         div.style.border = '1px solid black';
                         div.style.display = 'inline-block';
                         div.style.fontSize = '56'
+                        div.style.backgroundColor = 'grey'
                         row.appendChild(div);
 
 
@@ -111,20 +112,7 @@
                         }
                     }
 
-                    let time = (1)
-                    const timer = () => {
-                        setTimeout(() => {
-                            if (time > 0) {
-                                time = time + 1
-                                timer()
-                                console.log(time)
-                                timerDiv.innerHTML = time + 's'
-                            }
-                        }, 1000)
-                    }
-                    timer()
-                    timerDiv.innerHTML = time + 's'
-
+                   
 
 
 
