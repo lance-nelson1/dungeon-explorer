@@ -3,37 +3,26 @@
     <script type="text/javascript">
 
         class Game {
-            
+
             constructor({ }) {
                 let rootDiv;
-                const width = Number(prompt('widht'))
-                const height = Number(prompt('height'))
-                const amountOfBombs = Number(prompt('amountOfBombs'))
-                const areAllNonBombsRevealed = () => {
-                    //for every cell
-                    for (const cell of cells) {
-                        //if it's not a bomb
-                        //and not revealed
-                        if (!cell.isBomb && !cell.isRevealed) {
-                            //return false
-                            return false
-                        }
+                const height = 10
+                const width = 10
 
-                    }
-                    //if none of cells return false return true
-                    return true
-                }
+                //keep
                 const win = () => {
                     alert('you win')
                     game.reset()
 
                 }
+                //keep
                 const lose = () => {
                     setTimeout(() => {
                         alert('you lose')
                         game.reset()
                     }, 250)
                 }
+                //keep
                 this.start = () => {
                     rootDiv = document.createElement('div');
                     const timerDiv = document.createElement('div');
@@ -44,13 +33,11 @@
                         const randomBomb = { x: Math.floor(Math.random() * width), y: Math.floor(Math.random() * height) }
                         bombs.push(randomBomb)
                     }
-                    while (bombs.length < amountOfBombs) {
-                        addBomb()
-                    }
-                    console.log(bombs)
+
 
                     const cells = []
                     window.cells = cells
+                    //keep
                     const getCellByCoord = (x, y) => {
                         let i = 0
                         while (i < cells.length) {
@@ -61,96 +48,30 @@
                             i = i + 1
                         }
                         return null;
-                    }
+                    }// end of getcellbycoord
                     class Cell {
                         constructor(x, y, div) {
                             this.x = x;
                             this.y = y;
-                            this.isBomb = false
-                            for (let i = 0; i < bombs.length; i = i + 1) {
-                                if (!this.isBomb) {
-                                    const bomb = bombs[i];
-                                    this.isBomb = (x == bomb.x && y == bomb.y)
-                                }
-                            }
 
 
                             this.div = div;
-                            this.isRevealed = false;
-                            div.addEventListener('click', () => {
-                                this.reveal();
-                                if (areAllNonBombsRevealed()) {
-                                    win()
-                                }
-                            });
-                            div.addEventListener('contextmenu', (e) => {
-                                e.preventDefault();
-                                this.flag()
-                            })
-                            this.reveal = () => {
-                                if (this.isRevealed || this.isFlagged) {
-                                    return
-                                }
-                                this.isRevealed = true
-                                if (this.isBomb) {
-                                    div.style.backgroundColor = 'red'
-                                    lose()
-                                }
+                            };
 
-                                else {
-                                    const neighborCoords = [
-                                        { x: x - 1, y: y },
-                                        { x: x - 1, y: y - 1 },
-                                        { x: x, y: y - 1 },
-                                        { x: x + 1, y: y - 1 },
-                                        { x: x + 1, y: y },
-                                        { x: x + 1, y: y + 1 },
-                                        { x: x, y: y + 1 },
-                                        { x: x - 1, y: y + 1 },
-                                    ]
-                                    let bombCount = 0
-                                    for (const neighborCoord of neighborCoords) {
-                                        const neighbor = getCellByCoord(neighborCoord.x, neighborCoord.y);
-                                        if (neighbor && neighbor.isBomb) {
-                                            bombCount = bombCount + 1
-                                        }
-                                    }
-                                    if (bombCount > 0) {
-                                        div.innerHTML = bombCount
-                                    }
-                                    if (bombCount === 0) {
-                                        for (const neighborCoord of neighborCoords) {
-                                            const neighbor = getCellByCoord(neighborCoord.x, neighborCoord.y);
-                                            if (neighbor) {
-                                                neighbor.reveal()
-                                            }
-                                        }
-                                    }
-                                    div.style.backgroundColor = 'grey'
-                                }
-                            }
-                            this.flag = () => {
-                                if (this.isRevealed === true) {
+                            
 
-                                }
-                                else {
-                                    //when the cell is flagged
-                                    if (this.isFlagged === true) {
-                                        //unflag
-                                        this.isFlagged = false
-                                        this.div.style.backgroundColor = 'inherit'
-                                    }
-                                    //otherwise
-                                    else {
-                                        //flag
-                                        this.isFlagged = true;
-                                        this.div.style.backgroundColor = 'green'
-                                    }
-                                }
-                            }
-                        }
+                                        
+                                    
 
-                    }
+                                
+                            
+                       
+                                    
+                                
+                            
+                        
+
+                    }//end of Cell class
 
 
 
