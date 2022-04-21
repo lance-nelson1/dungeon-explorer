@@ -6,9 +6,9 @@
 
             constructor({ }) {
                 let rootDiv;
-                const height = 7
-                const width = 5
-
+                const height = 10
+                const width = 10
+                const player = { x: 1, y: 1 }
                 //keep
                 const win = () => {
                     alert('you win')
@@ -49,11 +49,17 @@
 
 
                             this.div = div;
+                            this.moveToCell = () => {
+                                player.x = x
+                                player.y = y
+                                this.div.style.backgroundColor = 'green'
+                            }
+                            this.leaveCell = () => {
+                                this.div.style.backgroundColor = 'grey'
+                            }
                         };
 
                     }//end of Cell class
-
-
 
 
                     window.getCellByCoord = getCellByCoord
@@ -97,11 +103,39 @@
 
 
                     creatRows(height, width)
-
+                    getCellByCoord(1, 1).moveToCell()
                 } // end of start function
                 this.reset = () => {
                     rootDiv.remove()
                     this.start()
+                }
+                this.up = () => {
+                    if (player.y !== 0) {
+                        getCellByCoord(player.x, player.y).leaveCell()
+                        getCellByCoord(player.x, player.y - 1).moveToCell()
+                    }
+
+                }
+                this.down = () => {
+                    if (player.y !== height - 1) {
+                        getCellByCoord(player.x, player.y).leaveCell()
+                        getCellByCoord(player.x, player.y + 1).moveToCell()
+                    }
+
+                }
+                this.left = () => {
+                    if (player.x !== 0) {
+                        getCellByCoord(player.x, player.y).leaveCell()
+                        getCellByCoord(player.x - 1, player.y).moveToCell()
+                    }
+
+                }
+                this.right = () => {
+                    if (player.x !== width - 1) {
+                        getCellByCoord(player.x, player.y).leaveCell()
+                        getCellByCoord(player.x + 1, player.y).moveToCell()
+                    }
+
                 }
             } // end of game constructor
         }// end of game class
@@ -112,7 +146,19 @@
                 game.reset()
 
             }
-
+            if (e.key === 'w') {
+                game.up()
+            }
+            if (e.key === 's') {
+                game.down()
+            }
+            if (e.key === 'a') {
+                game.left()
+            }
+            if (e.key === 'd') {
+                game.right()
+            }
+            console.log(e.key)
         });
     </script>
 </body>
