@@ -60,21 +60,21 @@
                                 player.y = y
                                 this.div.style.backgroundColor = 'green'
                                 const neighborCoords = [
-                                        { x: x - 1, y: y },
-                                        { x: x - 1, y: y - 1 },
-                                        { x: x, y: y - 1 },
-                                        { x: x + 1, y: y - 1 },
-                                        { x: x + 1, y: y },
-                                        { x: x + 1, y: y + 1 },
-                                        { x: x, y: y + 1 },
-                                        { x: x - 1, y: y + 1 },
-                                    ]
-                                    for (const neighborCoord of neighborCoords) {
-                                        const neighbor = getCellByCoord(neighborCoord.x, neighborCoord.y);
-                                        if (neighbor) {
-                                            neighbor.reveal()
-                                        }
+                                    { x: x - 1, y: y },
+                                    { x: x - 1, y: y - 1 },
+                                    { x: x, y: y - 1 },
+                                    { x: x + 1, y: y - 1 },
+                                    { x: x + 1, y: y },
+                                    { x: x + 1, y: y + 1 },
+                                    { x: x, y: y + 1 },
+                                    { x: x - 1, y: y + 1 },
+                                ]
+                                for (const neighborCoord of neighborCoords) {
+                                    const neighbor = getCellByCoord(neighborCoord.x, neighborCoord.y);
+                                    if (neighbor) {
+                                        neighbor.reveal()
                                     }
+                                }
                             }
                             this.leaveCell = () => {
                                 this.div.style.backgroundColor = 'grey'
@@ -150,14 +150,17 @@
                         getCellByCoord(player.x, player.y).leaveCell()
                         getCellByCoord(player.x - 1, player.y).moveToCell()
                     }
-
+                    
                 }
                 this.right = () => {
                     if (player.x !== width - 1) {
                         getCellByCoord(player.x, player.y).leaveCell()
                         getCellByCoord(player.x + 1, player.y).moveToCell()
                     }
-
+                    
+                    if (player.x === width - 1) {
+                        roomTransition()
+                    }
                 }
             } // end of game constructor
         }// end of game class
@@ -182,21 +185,26 @@
             }
             console.log(e.key)
         });
+        const roomTransition = () => {
+            game.reset()
+            getCellByCoord(player.x , player.y).moveToCell()
+        }
+
     </script>
 </body>
 /*
-money
-monsters
-walls
-traps
-drops from monsters aurmor,weapons, and health only a chance to get them
-health
-power ups(gaurded by monsters) rare like 5% chance
-tunnel entrances
+money;
+monsters;
+walls;
+traps;
+drops from monsters aurmor,weapons, and health only a chance to get them;
+health;
+power ups(gaurded by monsters) rare like 5% chance;
+tunnel entrances;
 things in tunnel(
-permanant stat upgrades (gaurded by monsters)
-chests with loot. loot = money, weapons, aurmor or health
-stronger monsters more health + damages
+permanant stat upgrades (gaurded by monsters);
+chests with loot. loot = money, weapons, aurmor or health;
+stronger monsters more health + damages;
 )
 */
 // another thing I wanted was switching rooms ex: in one room then theres a hallway to another
