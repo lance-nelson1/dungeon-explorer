@@ -25,15 +25,8 @@
                 //keep
                 this.start = () => {
                     rootDiv = document.createElement('div');
-                    const timerDiv = document.createElement('div');
-                    rootDiv.appendChild(timerDiv)
-                    document.body.appendChild(rootDiv)
-                    const bombs = []
-                    const addBomb = () => {
-                        const randomBomb = { x: Math.floor(Math.random() * width), y: Math.floor(Math.random() * height) }
-                        bombs.push(randomBomb)
-                    }
 
+                    document.body.appendChild(rootDiv)
 
                     const cells = []
                     window.cells = cells
@@ -56,20 +49,7 @@
 
 
                             this.div = div;
-                            };
-
-                            
-
-                                        
-                                    
-
-                                
-                            
-                       
-                                    
-                                
-                            
-                        
+                        };
 
                     }//end of Cell class
 
@@ -112,7 +92,7 @@
                         }
                     }
 
-                   
+
 
 
 
