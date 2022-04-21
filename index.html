@@ -150,14 +150,14 @@
                         getCellByCoord(player.x, player.y).leaveCell()
                         getCellByCoord(player.x - 1, player.y).moveToCell()
                     }
-                    
+
                 }
                 this.right = () => {
                     if (player.x !== width - 1) {
                         getCellByCoord(player.x, player.y).leaveCell()
                         getCellByCoord(player.x + 1, player.y).moveToCell()
                     }
-                    
+
                     if (player.x === width - 1) {
                         roomTransition()
                     }
@@ -186,8 +186,12 @@
             console.log(e.key)
         });
         const roomTransition = () => {
-            game.reset()
-            getCellByCoord(player.x , player.y).moveToCell()
+            let transition = prompt("move to next room (yes or no)")
+            if (transition === "yes") {
+                game.reset()
+                getCellByCoord(player.x, player.y).moveToCell()
+            }
+
         }
 
     </script>
