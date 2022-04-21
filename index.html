@@ -49,10 +49,32 @@
 
 
                             this.div = div;
+                            this.isRevealed = false
+                            this.reveal = () => {
+                                if (this.isRevealed === false) {
+                                    this.div.style.backgroundColor = 'lightgrey'
+                                }
+                            }
                             this.moveToCell = () => {
                                 player.x = x
                                 player.y = y
                                 this.div.style.backgroundColor = 'green'
+                                const neighborCoords = [
+                                        { x: x - 1, y: y },
+                                        { x: x - 1, y: y - 1 },
+                                        { x: x, y: y - 1 },
+                                        { x: x + 1, y: y - 1 },
+                                        { x: x + 1, y: y },
+                                        { x: x + 1, y: y + 1 },
+                                        { x: x, y: y + 1 },
+                                        { x: x - 1, y: y + 1 },
+                                    ]
+                                    for (const neighborCoord of neighborCoords) {
+                                        const neighbor = getCellByCoord(neighborCoord.x, neighborCoord.y);
+                                        if (neighbor) {
+                                            neighbor.reveal()
+                                        }
+                                    }
                             }
                             this.leaveCell = () => {
                                 this.div.style.backgroundColor = 'grey'
