@@ -1,0 +1,131 @@
+<body>
+
+    <script>
+        class Player {
+            constructor() {
+                this.health = 100;
+
+                this.actions = [{
+                    label: 'Attack',
+                    damage: 5
+                }]
+            }
+        }
+        class Monster {
+            constructor() {
+                this.health = 10;
+                this.name = 'Widdle Dragon';
+            }
+        }
+        class CombatScreen {
+            constructor() {
+                // takes a player, and a monster
+                // returns a promise for win or lose
+                this.begin = ({ player, monster, intro }) => {
+                    const screenRoot = document.createElement('div');
+                    document.body.appendChild(screenRoot);
+                    screenRoot.innerHTML = `
+                        <div style="display:flex; justify-content: center; flex-wrap: wrap;">
+                            <div style="width: 40%;">
+                                <div style="display:flex;">
+                                    <div>
+                                        <h1 style="text-align: center;">Sir Lancelot</h1>
+                                        <img style="height: 300px;" src="https://media.istockphoto.com/vectors/wizard-vector-id673584626?k=20&m=673584626&s=612x612&w=0&h=Ml98Kb6pKDLdgIawMIGSW2bhQ1yPeA_Nv94NFLY2M7c=">
+                                    </div>
+                                    <div style="margin-top: 50px;">
+                                        <h2>Player Stats</h2>
+                                        <div>
+                                            Health: <span id="player-health"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h2>Actions</h2>
+                                    <ul id="player-actions" style="list-style-type: none;">
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="width: 40%;">
+                                <div style="display:flex;">
+                                    <div style="margin-top: 50px;">
+                                        <h2>Monster Stats</h2>
+                                        <div>
+                                            Health: <span id="monster-health"></span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h1 style="text-align: center;">{monster-name}</h1>
+                                        <img style="height: 300px;" src="https://us.123rf.com/450wm/dazdraperma/dazdraperma1505/dazdraperma150500021/39940789-illustration-of-cute-cartoon-baby-dragon.jpg?ver=6" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="width: 80%; background-color: beige; border: solid 1px black; border-radius: 10px; box-shadow: 10px 10px 10px black; margin: 50px; padding: 20px;">
+                                <h1>Combat Log</h1>
+                                <ul id="combat-log"></ul>
+
+                            </div>
+                        </div>
+                    `.replace('{monster-name}', monster.name);
+
+                    const updateMonsterHealth = () => {
+                        screenRoot.querySelector('#monster-health').innerHTML = monster.health;
+                    }
+                    const updatePlayerHealth = () => {
+                        screenRoot.querySelector('#player-health').innerHTML = player.health;
+                    }
+
+
+                    updateMonsterHealth();
+                    updatePlayerHealth();
+
+                    // add combat log
+                    const combatLogUL = screenRoot.querySelector('#combat-log');
+                    let messages = [];
+                    const updateMessages = () => {
+                        combatLogUL.innerHTML = messages.map(m => `<li>${m}</li>`.replace('{monster-name}', monster.name)).join('\n');
+                    };
+                    const addMessage = (message) => {
+                        messages.unshift(message);
+                        messages = messages.slice(0, 3);
+                        updateMessages();
+                    }
+                    addMessage(intro);
+
+                    const doMonsterAction = () => {
+                        const damage = Math.floor(Math.random() * 10);
+                        player.health = player.health - damage;
+                        updatePlayerHealth();
+                        addMessage(`${monster.name} attacks you for ${damage}`);
+                    }
+
+                    const doPlayerAction = (action) => {
+                        monster.health = monster.health - action.damage;
+                        updateMonsterHealth();
+                        addMessage(`You ${action.label} ${monster.name} for ${action.damage}`);
+
+                        setTimeout(() => {
+                            doMonsterAction();
+                        }, 1000)
+                    };
+
+                    const actionsUL = screenRoot.querySelector('#player-actions');
+                    for (const action of player.actions) {
+                        const actionLI = document.createElement('li');
+                        actionsUL.append(actionLI);
+                        actionLI.innerHTML = action.label;
+                        actionLI.addEventListener('click', () => {
+                            doPlayerAction(action);
+                        });
+                    }
+                }
+            }
+        }
+
+        new CombatScreen().begin({
+            player: new Player(),
+            monster: new Monster(),
+            intro: 'You woke {monster-name}'
+        });
+    </script>
+</body>
