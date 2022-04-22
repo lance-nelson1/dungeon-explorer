@@ -1,0 +1,20 @@
+<body>
+    <script>
+        class Chest {
+            constructor (parent) {
+                const img = document.createElement('img')
+                parent.append(img)
+                img.src = './chest-closed.png'
+                this.open = () => {
+                    img.src = './chest-opened.png'
+                }
+                this.close = () => {
+                    img.src = './chest-closed.png'
+
+                }
+            }
+        }
+        window.chest = new Chest(document.body)
+
+    </script>
+</body>

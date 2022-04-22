@@ -4,8 +4,13 @@
         let XX = 0
         let YY = 1
         class Game {
+            
 
             constructor({ }) {
+                let spawnstuff = () => {
+
+
+                }
                 let rootDiv;
                 const height = 10
                 const width = 10
@@ -189,12 +194,8 @@
             console.log(e.key)
         });
         const roomTransition = () => {
-            let transition = prompt("move to next room (yes or no)")
-            if (transition === "yes") {
-                game.reset()
-                getCellByCoord(XX, YY).moveToCell()
-            }
-
+            game.reset()
+            getCellByCoord(XX, YY).moveToCell()
         }
 
         /*
@@ -207,11 +208,10 @@
         power ups(gaurded by monsters) rare like 5% chance;
         tunnel entrances;
         things in tunnel(
-        permanant stat upgrades (gaurded by monsters);
+        permanant stat upgrades (gaurded by stong monsters);
         chests with loot. loot = money, weapons, aurmor or health;
-        stronger monsters more health + damages;
+        stronger monsters more health + damage;
         )
         */
-        // another thing I wanted was switching rooms ex: in one room then theres a hallway to another
     </script>
 </body>
