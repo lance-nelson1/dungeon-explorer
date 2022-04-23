@@ -1,20 +1,120 @@
 <body>
     <script>
-        class Chest {
-            constructor (parent) {
-                const img = document.createElement('img')
-                parent.append(img)
-                img.src = './chest-closed.png'
-                this.open = () => {
-                    img.src = './chest-opened.png'
-                }
-                this.close = () => {
-                    img.src = './chest-closed.png'
+        // class Chest {
+        //     constructor (parent) {
+        //         const img = document.createElement('img')
+        //         parent.append(img)
+        //         img.src = './chest-closed.png'
+        //         this.open = () => {
+        //             img.src = './chest-opened.png'
+        //         }
+        //         this.close = () => {
+        //             img.src = './chest-closed.png'
 
+        //         }
+        //     }
+        // }
+        // window.chest = new Chest(document.body)
+
+        class Slime {
+            constructor(parent) {
+                const slime = () => {
+                    const img = document.createElement('img')
+                    parent.append(img)
+                    img.src = './slime.png'
+                    img.style.width = '50'
+                    img.style.height = '50'
                 }
+                slime()
             }
         }
-        window.chest = new Chest(document.body)
+        new Slime(document.body)
+        class Bug {
+            constructor(parent) {
+                const bug = () => {
+                    const img = document.createElement('img')
+                    parent.append(img)
+                    img.src = './bug.png'
+                    img.style.width = '50'
+                    img.style.height = '50'
+                }
+                bug()
+            }
+        }
+        new Bug(document.body)
+        class Orc {
+            constructor(parent) {
+                const orc = () => {
+                    const img = document.createElement('img')
+                    parent.append(img)
+                    img.src = './orc.png'
+                    img.style.width = '50'
+                    img.style.height = '50'
+                }
+                orc()
+            }
+        }
+        new Orc(document.body)
+        class Gear {
+            constructor(parent) {
+                const gear = () => {
+                    const img = document.createElement('img')
+                    parent.append(img)
+                    img.src = './gear.png'
+                    img.style.width = '50'
+                    img.style.height = '50'
+                }
+                gear()
+            }
+        }
+        new Gear(document.body)
+        class Knight {
+            constructor(parent) {
+                const knight = () => {
+                    const img = document.createElement('img')
+                    parent.append(img)
+                    img.src = './knight.png'
+                    img.style.width = '50'
+                    img.style.height = '50'
+                }
+                knight()
+            }
+        }
+        new Knight(document.body)
+        class Wall {
+            constructor(parent) {
+                const wall = () => {
+                    const img = document.createElement('img')
+                    parent.append(img)
+                    img.src = './wall.png'
+                    img.style.width = '50'
+                    img.style.height = '50'
+                }
+                wall()
+            }
+        }
+        new Wall(document.body)
+        class Money {
+            constructor(parent) {
+                const img = document.createElement('img')
+                parent.append(img)
+                img.src = './money.png'
+                img.style.width = '50'
+                img.style.height = '50'
+            }
+        }
+        new Money(document.body)
+        class TunnelEntrance {
+            constructor(parent) {
+                const img = document.createElement('img')
+                parent.append(img)
+                img.src = './TE.png'
+                img.style.width = '50'
+                img.style.height = '50'
+            }
+        }
+        new TunnelEntrance(document.body)
+
 
     </script>
 </body>
